@@ -1,0 +1,381 @@
+
+{#
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ClientsController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    
+label,p,input,h1,h2,h3,h5,h6,span,a,li{
+
+font-family: 'Roboto Condensed', sans-serif;
+color:black;
+}
+body{
+      background:#f5f5f5;
+}
+
+    
+</style>
+
+<div class="container" style="width:50%">
+{{ form_start(form) }}
+
+<div class="card mt-5">
+<div class="card-body">
+<div class="row">
+<h3>Information Client</h3>
+<div class="col-lg-6">
+
+
+
+     <div class="form-group mt-2" >
+                     {{ form_label(form.firstName, 'Nom du client') }} <span style="color: #656464;font-size: 13px;"> <span style="color:red"> *(obligatoire) </span></span>
+                     {{ form_widget(form.firstName,
+                     {'attr': {'class': 'form-control',
+                     'placeholder': 'Saisir le nom du client'} }) }}
+                        <small id="terms" class="form-text text-muted erorr-title" > 
+                     {{ form_errors(form.firstName) }} 
+                      </small>
+                  </div>
+</div>
+
+
+<div class="col-lg-6">
+<div class="form-group mt-2" >
+                     {{ form_label(form.lastName, 'Prénom du client') }} <span style="color: #656464;font-size: 13px;"> <span style="color:red"> *(obligatoire) </span></span>
+                     {{ form_widget(form.lastName,
+                     {'attr': {'class': 'form-control',
+                     'placeholder': 'Saisir le nom du client'} }) }}
+                        <small id="terms" class="form-text text-muted erorr-title" > 
+                     {{ form_errors(form.lastName) }} 
+                      </small>
+                  </div>
+</div>
+
+
+<div class="col-lg-6">
+<div class="form-group mt-2" >
+                     {{ form_label(form.email, 'email du client') }} <span style="color: #656464;font-size: 13px;"> <span style="color:red"> *(obligatoire) </span></span>
+                     {{ form_widget(form.email,
+                     {'attr': {'class': 'form-control',
+                     'placeholder': 'Saisir le nom du client'} }) }}
+                        <small id="terms" class="form-text text-muted erorr-title" > 
+                     {{ form_errors((form.email)) }} 
+                      </small>
+                  </div>
+</div>
+
+<div class="col-lg-6">
+
+            <div class="form-group mt-2" >
+                     {{ form_label(form.phoneNumber, 'téléphone du client') }} <span style="color: #656464;font-size: 13px;"> <span style="color:red"> *(obligatoire) </span></span>
+                     {{ form_widget(form.phoneNumber,
+                     {'attr': {'class': 'form-control',
+                     'placeholder': 'Saisir le nom du client'} }) }}
+                        <small id="terms" class="form-text text-muted erorr-title" > 
+                     {{ form_errors((form.phoneNumber)) }} 
+                      </small>
+                  </div>
+</div>
+</div>
+
+</div>
+</div>
+{{ form_end(form) }}
+
+
+
+
+
+
+{{ form_start(form4) }}
+
+<div class="card mt-2">
+<div class="card-body">
+<div class="row">
+<h3>Information Vehicule</h3>
+
+
+<div class="col-lg-6">
+
+        <div class="form-group mt-2" >
+                     {{ form_label(form4.matricule, 'Matricule') }} <span style="color: #656464;font-size: 13px;"> <span style="color:red"> *(obligatoire) </span></span>
+                     {{ form_widget(form4.matricule,
+                     {'attr': {'class': 'form-control',
+                     'placeholder': 'Saisir le matricule'} }) }}
+                        <small id="terms" class="form-text text-muted erorr-title" > 
+                     {{ form_errors((form4.matricule)) }} 
+                      </small>
+                  </div>
+</div>
+</div>
+
+</div>
+</div>
+{{ form_end(form4) }}
+
+
+
+
+
+
+
+
+
+<div class="card mt-2">
+<div class="card-body">
+<div class="row">
+<h3>Information Service</h3>
+<div>
+{% for operation in operation %}
+<br><input name="{{operation.id}}" value="{{operation.titreOperation}}"  type="hidden"  />
+{% for services in services %}
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="{{services.serviceName}}" name="operation{{operation.id}}[]" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    {{services.serviceName}}
+  </label>
+</div>
+
+{% endfor  %}
+{% endfor  %}
+</div>
+<div class="col-lg-6">
+
+       
+</div>
+</div>
+
+</div>
+</div>
+
+
+
+
+
+
+
+
+#}
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello ClientsController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+    
+label,p,input,h1,h2,h3,h5,h6,span,a,li{
+
+font-family: 'Roboto Condensed', sans-serif;
+color:black;
+}
+body{
+      background:#f5f5f5;
+}
+.section{
+  float:left;
+      margin-left: 12%;
+}
+.label-choice{
+  font-weight:bolder;
+}
+
+    
+</style>
+<body>
+<div class="container">
+
+<form action="/add" method="post">
+
+<div class="card mt-5">
+<div class="card-body">
+<h3>Informaion Client</h3>
+<div class="row"> 
+<div class="col-lg-6">
+  <div class="form-group">
+    <label for="clientFirstName" class="col-form-label">Prenom Client</label>
+    <div class="col-sm-10">
+      <input type="text" name="clientFirstName" class="form-control" id="clientFirstName" placeholder="Prenom client">
+    </div>
+  </div>
+  </div>
+
+<div class="col-lg-6">
+  <div class="form-group">
+    <label for="clientLastName" class="col-form-label">Nom Client</label>
+    <div class="col-sm-10">
+      <input type="text" name="clientLastName" class="form-control" id="clientLastName" placeholder="Nom client">
+    </div>
+  </div>
+  </div>
+</div>
+
+
+<div class="row"> 
+<div class="col-lg-6">
+  <div class="form-group">
+    <label for="clientEmail" class="col-form-label">Email Client</label>
+    <div class="col-sm-10">
+      <input type="text" name="clientEmail" class="form-control" id="clientEmail" placeholder="Email client">
+    </div>
+  </div>
+  </div>
+
+<div class="col-lg-6">
+  <div class="form-group">
+    <label for="clientPhone" class="col-form-label">Telephone Client</label>
+    <div class="col-sm-10">
+      <input type="text" name="clientPhone" class="form-control" id="clientPhone" placeholder="Telephone client">
+    </div>
+  </div>
+  </div>
+
+
+<div class="col-lg-6">
+  <div class="form-group">
+    <label for="clientAdresse" class="col-form-label">Adresse Client</label>
+    <div class="col-sm-10">
+      <textarea   name="clientAdresse" class="form-control" id="clientAdresse" placeholder="client Adresse" rows="3"></textarea>
+    </div>
+  </div>
+  </div>
+
+
+
+<div class="col-lg-6">
+  <div class="form-group">
+    <label for="clientVille" class="col-form-label">Adresse Ville</label>
+    <div class="col-sm-10">
+      <input type="text" name="clientVille" class="form-control" id="clientVille" placeholder="client Ville">
+    </div>
+  </div>
+  </div>
+
+
+
+</div>
+</div>
+</div>
+
+
+
+<div class="card mt-2">
+<div class="card-body">
+<h3>Informaion Vehicule</h3>
+<div class="row"> 
+<div class="col-lg-6">
+  <div class="form-group">
+    <label for="vehiculeMatricule" class="col-form-label">Matricule</label>
+    <div class="col-sm-10">
+      <input type="text" name="vehiculeMatricule" class="form-control" id="vehiculeMatricule" placeholder="vehicule Matricul">
+    </div>
+  </div>
+  </div>
+
+  <div class="col-lg-6">
+  <div class="form-group">
+    <label for="vehiculeMarque" class="col-form-label">Marque</label>
+    <div class="col-sm-10">
+      <input type="text" name="vehiculeMarque" class="form-control" id="vehiculeMarque" placeholder="vehicule Marque">
+    </div>
+  </div>
+  </div>
+
+   <div class="col-lg-6">
+  <div class="form-group">
+    <label for="vehiculeModele" class="col-form-label">Modele</label>
+    <div class="col-sm-10">
+      <input type="text" name="vehiculeModele" class="form-control" id="vehiculeModele" placeholder="vehicule Modele">
+    </div>
+  </div>
+  </div>
+
+    <div class="col-lg-6">
+  <div class="form-group">
+    <label for="vehiculeNumberChassie" class="col-form-label">Numero chassie</label>
+    <div class="col-sm-10">
+      <input type="text" name="vehiculeNumberChassie" class="form-control" id="vehiculeNumberChassie" placeholder="vehicule Numero chassie">
+    </div>
+  </div>
+  </div>
+
+
+  <div class="col-lg-6">
+  <div class="form-group">
+    <label for="vehiculeKilometrage" class="col-form-label">Kilometrage</label>
+    <div class="col-sm-10">
+      <input type="text" name="vehiculeKilometrage" class="form-control" id="vehiculeKilometrage" placeholder="vehicule Kilometrage">
+    </div>
+  </div>
+  </div>
+
+</div>
+</div>
+</div>
+
+
+
+
+<div class="card mt-2">
+<div class="card-body">
+<h3>Operation</h3>
+<div class="row"> 
+<div class="col-lg-12">
+  <div class="form-group">
+
+   {% for operation  in operation %}
+   <div class="section">
+<br>
+<input name="service[]"    value="{{operation.id }}"    > 
+<p class="label-choice">{{operation.titreOperation}} <p>
+{% for services in services %}
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="{{services.id}}" name="operation[{{operation.id}}][{{services.id}}]" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    {{services.serviceName}}
+  </label>
+</div>
+
+{% endfor  %}
+</div>
+{% endfor  %}
+  </div>
+  </div>
+  <div class="col-lg-6">
+  </div>
+<div class="col-lg-4">
+ <button type="submit" class="btn btn-primary">Valider le  devis</button>
+
+</div>
+
+</div>
+</div>
+
+
+</form>
+
+{#
+{% for operation in operation %}
+<br><input name="{{operation.id}}" value="{{operation.titreOperation}}"  type="hidden"  />
+{% for services in services %}
+<div class="form-check">
+  <input class="form-check-input" type="checkbox" value="{{services.serviceName}}" name="operation{{operation.id}}[]" id="flexCheckDefault">
+  <label class="form-check-label" for="flexCheckDefault">
+    {{services.serviceName}}
+  </label>
+</div>
+
+{% endfor  %}
+{% endfor  %}#}
+
+
+</div>
+ </body> 
+    </div>
+{% endblock %}
