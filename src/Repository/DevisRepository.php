@@ -36,6 +36,21 @@ class DevisRepository extends ServiceEntityRepository
     }
     */
 
+    public function showDevis($value)
+    {
+        return $this->createQueryBuilder('d')
+        ->select('d.id')
+        ->addSelect('c.firstName,c.lastName')
+        ->addSelect('v.matricule')
+        ->leftJoin('App\Entity\Clients','c','WITH','c.id = d.clients')
+        ->leftJoin('App\Entity\Vehicule','v','WITH','v.id = d.vehicule')
+        ->where('v.matricule like :val')
+        ->setParameter('val','%'.$value.'%')
+        ->getQuery()
+         ->getResult()
+        ;
+    }
+
     /*
     public function findOneBySomeField($value): ?Devis
     {

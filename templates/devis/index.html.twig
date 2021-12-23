@@ -1,0 +1,74 @@
+{% extends 'base.html.twig' %}
+
+{% block title %}Hello DevisController!{% endblock %}
+
+{% block body %}
+<style>
+    .example-wrapper { margin: 1em auto; max-width: 800px; width: 95%; font: 18px/1.5 sans-serif; }
+    .example-wrapper code { background: #F5F5F5; padding: 2px 6px; }
+</style>
+
+<div class="example-wrapper">
+   
+    <div class="card">
+    <div class="card-body">
+     <h3>Liste des devis</h3>
+
+
+     <form class="form-inline" action="/devis" method="get">
+
+  <div class="form-group mx-sm-3 mb-2">
+    <label for="matric" class="sr-only">Matricule</label>
+    <input  name="matric" type="text" class="form-control" id="matric" placeholder="Rechercher par matricule du véhicule ">
+  </div>
+  <div style="position:relative;left:80%">
+  <button type="submit" class="btn btn-primary mb-2">Rechercher <i class="fas fa-search"></i></button>
+  </div>
+</form>
+
+
+    <table class="table table-striped">
+  <thead>
+    <tr>
+      <th scope="col">#Numero devis</th>
+ 
+      <th scope="col">Prénom client</th>
+      <th scope="col">Nom Client</th>
+      <th scope="col">Matricule véhicule</th>
+       <th scope="col"> Action</th>
+      
+    </tr>
+  </thead>
+  <tbody>
+     {% for devis in devis %}
+    <tr>
+      <th scope="row">{{devis.id}} </th>
+      <td> {{devis.firstName}}</td>
+      <td>{{devis.lastName}}</td>
+      <td> {{devis.matricule}}</td>
+    <td>  <a class="btn btn-info btn-sm" style="color:white">voir le devis</a> </td>
+    </tr>
+    {% endfor  %}
+   
+  </tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+ <div class="navigation" >
+    {{ knp_pagination_render(devis) }}
+</div>
+
+</div>
+
+  
+   
+</div>
+{% endblock %}

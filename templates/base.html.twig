@@ -10,18 +10,120 @@
        <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Inter:wght@100&family=Roboto+Condensed:wght@300;400&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.1.1/css/all.min.css" integrity="sha512-ioRJH7yXnyX+7fXTQEKPULWkMn3CqMcapK0NNtCN8q//sW7ZeVFcbMJ9RvX99TwDg6P8rAH2IqUSt2TLab4Xmw==" crossorigin="anonymous" referrerpolicy="no-referrer" />   
+      <link
+    rel="stylesheet"
+    href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css"
+  />   
         {% endblock %}
+<style>
+body{
+    background:#F5F5F5;
+}
 
+button.btn.btn-md.btn-dark.mt-5{
+    background:#2980b9;
+    border:none;
+    width:100%;
+    
+}
+.btn-vld,nav.navbar{
+   background:#2980b9 !important;
+   color:white;
+       box-shadow: 3px 3px 3px #d8d8d8;
+
+}
+.btn-vld{
+    padding-left:50px;
+     padding-right:50px;
+}
+.btn-vld:hover{
+   color:#2880b9 ;
+   background:white !important;
+   border:2px solid #2880b9;
+}
+h3{
+    color:#2980b9 !important;
+}
+.card{
+    box-shadow: 3px 5px 4px #ececec;
+}
+.btn-light{
+    font-weight: 500;
+    color: #ffe484;
+    border-color: #ffe484;
+    background:transparent;
+}
+
+.nav-bar {
+    padding-right: 0.5rem;
+    padding-left: 0.5rem;
+    color: #cbbde2;
+    
+    
+}
+input,textarea {
+    background: #F5F5F5 !important;
+    border: none !important;
+   
+}
+input{
+    height:49px;
+}
+.form-check-input{
+background:white !important;
+border:1px solid gray !important;
+background:#f5F5F5 !important;
+}
+.form-check-input[type=checkbox]:checked{
+background-color:#2980b9 !important;
+}
+
+
+span.icon-succes {
+    font-size: 82px;
+    color: #2ecc71;
+ 
+}
+.nav-link{
+    color:white;
+}
+.nav-link:hover{
+    color:#F5F5F5;
+}
+span.current,span.page,span.next,span.last,span.previous,span.first {
+    border: 1px solid gray;
+    padding-left: 8px;
+    padding-right: 8px;
+    border-radius: 5px;
+    margin-left:3px;
+    color:black !important;
+   
+}
+label,p,input,h1,h2,h3,h5,h6,span,a,li,td,th,nav{
+
+font-family: 'Roboto Condensed', sans-serif;
+color:black;
+}
+
+
+
+</style>
   <body>
         <nav class="navbar navbar-expand-lg navbar-light bg-light px-1">
             <div class="container-fluid">
-                {# <div class="collapse navbar-collapse" id="navbar-collapsable">
-                  <a class="nav-link text-black-50" href="{{ path('app_login') }}">Log In</a>
+            
+                 <div class="collapse navbar-collapse" id="navbar-collapsable">
+                {#  <a class="nav-link" href="{{ path('app_login') }}">Accueil</a>#}
+                   <a class="nav-link" href="{{ path('devis') }}">Liste des devis</a>
+                    <a class="nav-link" href="{{ path('clients_add') }}">Ajouter un devis</a>
                
-                </div> #}
+                </div> 
                               {% if app.user %}
-        <div class="mb-3">
-            You are logged in as {{ app.user.username }}, <a href="{{ path('app_logout') }}">Logout</a>
+                               <div>
+  </div>
+        <div >
+            Vous êtes connecté en tant que {{ app.user.username }}, <a class="btn btn-light" href="{{ path('app_logout') }}">Se déconnecter!</a>
         </div>
     {% endif %}
             </div>

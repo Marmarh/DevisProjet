@@ -29,9 +29,15 @@ class Operation
      */
     private $devisOperations;
 
+    /**
+     * @ORM\OneToMany(targetEntity=OperationService::class, mappedBy="operation")
+     */
+    private $operationServices;
+
     public function __construct()
     {
         $this->devisOperations = new ArrayCollection();
+        $this->operationServices = new ArrayCollection();
     }
 
     public function getId(): ?int
@@ -75,6 +81,36 @@ class Operation
             // set the owning side to null (unless already changed)
             if ($devisOperation->getOperation() === $this) {
                 $devisOperation->setOperation(null);
+            }
+        }
+
+        return $this;
+    }
+
+    /**
+     * @return Collection|OperationService[]
+     */
+    public function getOperationServices(): Collection
+    {
+        return $this->operationServices;
+    }
+
+    public function addOperationService(OperationService $operationService): self
+    {
+        if (!$this->operationServices->contains($operationService)) {
+            $this->operationServices[] = $operationService;
+            $operationService->setOperation($this);
+        }
+
+        return $this;
+    }
+
+    public function removeOperationService(OperationService $operationService): self
+    {
+        if ($this->operationServices->removeElement($operationService)) {
+            // set the owning side to null (unless already changed)
+            if ($operationService->getOperation() === $this) {
+                $operationService->setOperation(null);
             }
         }
 
